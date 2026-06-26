@@ -1,0 +1,52 @@
+[
+  {
+    "question": "What research area was used to evaluate the LLM-accelerated rapid review pipeline?",
+    "expected_page": 2,
+    "expected_source": "test.pdf"
+  },
+  {
+    "question": "What are the two research questions (RQ1 and RQ2) proposed in the paper?",
+    "expected_page": 3,
+    "expected_source": "test.pdf"
+  },
+  {
+    "question": "How many papers were retrieved from Scopus using the search string?",
+    "expected_page": 4,
+    "expected_source": "test.pdf"
+  },
+  {
+    "question": "Which LLMs were used for title-abstract screening?",
+    "expected_page": 4,
+    "expected_source": "test.pdf"
+  },
+  {
+    "question": "What inclusion and exclusion criteria were used during LLM abstract screening?",
+    "expected_page": 5,
+    "expected_source": "test.pdf"
+  },
+  {
+    "question": "Why did the authors use regular expressions instead of LLMs for link extraction?",
+    "expected_page": 5,
+    "expected_source": "test.pdf"
+  },
+  {
+    "question": "What four factors does the LLM repository runner consider when creating an action plan?",
+    "expected_page": 6,
+    "expected_source": "test.pdf"
+  },
+  {
+    "question": "What Cohen's Kappa, precision, recall, and F1-score were achieved by the LLM screening process?",
+    "expected_page": 7,
+    "expected_source": "test.pdf"
+  },
+  {
+    "question": "How many unique links were extracted and how many were ultimately identified as suitable tools?",
+    "expected_page": 8,
+    "expected_source": "test.pdf"
+  },
+  {
+    "question": "What repository was the only Grade 3 repository and why did it succeed?",
+    "expected_page": 10,
+    "expected_source": "test.pdf"
+  }
+]
