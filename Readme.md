@@ -15,10 +15,13 @@ Evaluated on a 10-question ground truth set built from the source document.
 
 ## Architecture
 
-                        ┌─────────────────────────────┐
-                        │      Streamlit Frontend     │
-                        │-----------------------------│
-                        │ • PDF Upload                │      
+## High-Level Architecture
+
+```text
+                        ┌──────────────────────────────┐
+                        │      Streamlit Frontend      │
+                        │------------------------------│
+                        │ • PDF Upload                │
                         │ • Chat Interface            │
                         │ • Session Chat History      │
                         │ • Source Viewer             │
@@ -29,9 +32,8 @@ Evaluated on a 10-question ground truth set built from the source document.
                         ┌──────────────▼──────────────┐
                         │        FastAPI App          │
                         │-----------------------------│
-                        │  POST /ingest               │
-                        │  POST /query                |
-                        |  GET  /documents            |
+                        │  POST /ingest              │
+                        │  POST /query               │
                         └──────────────┬──────────────┘
                                        │
                                        ▼
@@ -52,6 +54,73 @@ Evaluated on a 10-question ground truth set built from the source document.
  │ Embeddings      │         │ Groq LLM        │
  │ FAISS Index     │         │ Citations       │
  └─────────────────┘         └─────────────────┘
+```
+
+---
+
+## Document Ingestion Pipeline
+
+```text
+PDF Upload
+      │
+      ▼
+PDF Text Extraction
+      │
+      ▼
+Text Cleaning
+      │
+      ▼
+Fixed-size Sliding Window Chunking
+(chunk_size + overlap)
+      │
+      ▼
+Sentence Transformer Embeddings
+      │
+      ▼
+FAISS Index
+      │
+      ▼
+Save Chunk Metadata
+(registry.json + metadata.json)
+```
+
+---
+
+## Query Pipeline
+
+```text
+User Question
+      │
+      ▼
+Query Embedding
+      │
+      ▼
+FAISS Similarity Search
+      │
+      ▼
+Top-20 Candidate Chunks
+      │
+      ▼
+Cross-Encoder Reranker
+      │
+      ▼
+Top-5 Relevant Chunks
+      │
+      ▼
+Prompt Construction
+      │
+      ▼
+Groq LLM
+      │
+      ▼
+Grounded Answer
+      │
+      ▼
+Source Citations
+```
+
+                        
+              
 
 ## Tech Stack
 - FastAPI — backend API
